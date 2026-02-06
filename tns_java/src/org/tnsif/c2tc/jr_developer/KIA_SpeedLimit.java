@@ -2,7 +2,7 @@ package org.tnsif.c2tc.jr_developer;
 
 public class KIA_SpeedLimit {
 	
-	public void speedlimit() {
+	public void speedlimits() {
 		System.out.println("ALL KIA have speedlimit");
 	}
 

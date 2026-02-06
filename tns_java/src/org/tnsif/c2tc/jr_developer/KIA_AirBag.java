@@ -1,7 +1,7 @@
 package org.tnsif.c2tc.jr_developer;
 
 public class KIA_AirBag {
-	public void disp_AirBags() {
+	public void disp_AirBag() {
 		System.out.println("ALL KIA have Airbags");
 	}
 
