@@ -1,4 +1,4 @@
-package tns_java;
+package org.tnsif.accenture.c2tc.java;
 class Calculator{
 	int add(int a ,int b) {
 		return a + b;

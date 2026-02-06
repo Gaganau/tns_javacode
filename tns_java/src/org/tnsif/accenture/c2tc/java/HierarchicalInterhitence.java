@@ -1,4 +1,4 @@
-package tns_java;
+package org.tnsif.accenture.c2tc.java;
 
 class Employee{
 	void company() {
