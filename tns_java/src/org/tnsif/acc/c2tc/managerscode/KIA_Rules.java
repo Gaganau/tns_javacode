@@ -1,4 +1,4 @@
-package org.tnsif.c2tc.managerscode;
+package org.tnsif.acc.c2tc.managerscode;
 
 public class KIA_Rules {
 

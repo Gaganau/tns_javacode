@@ -1,5 +1,5 @@
-package org.tnsif.c2tc.sr_developer;
-import org.tnsif.c2tc.jr_developer.*;
+package org.tnsif.acc.c2tc.sr_developer;
+import org.tnsif.acc.c2tc.jr_developer.*;
 
 public class KIA_internal {
 

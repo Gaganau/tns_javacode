@@ -1,4 +1,4 @@
-package org.tnsif.c2tc.PackagesDemo;
+package org.tnsif.acc.c2tc.PackagesDemo;
 
 public class BuiltinPackagesDemo {
 
