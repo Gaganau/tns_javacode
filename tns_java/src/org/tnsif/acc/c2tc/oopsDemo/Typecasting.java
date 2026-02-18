@@ -1,4 +1,4 @@
-package org.tnsif.acc.c2tc.java;
+package org.tnsif.acc.c2tc.oopsDemo;
 
 public class Typecasting {
 

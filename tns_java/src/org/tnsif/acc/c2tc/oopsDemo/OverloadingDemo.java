@@ -1,4 +1,4 @@
-package org.tnsif.acc.c2tc.java;
+package org.tnsif.acc.c2tc.oopsDemo;
 class Calculator{
 	int add(int a ,int b) {
 		return a + b;
