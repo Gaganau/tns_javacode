@@ -1,5 +1,4 @@
-package org.tnsif.acc.c2tc.oopsDemo;
-
+package org.tnsif.acc.c2tc.java_basics;
 public class HelloWorld {
 
 	public static void main(String[] args) {
@@ -8,3 +7,5 @@ public class HelloWorld {
 	}
 
 }
+
+

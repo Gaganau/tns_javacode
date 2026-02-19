@@ -1,4 +1,6 @@
-package org.tnsif.acc.c2tc.oopsDemo;
+package org.tnsif.acc.c2tc.java_basics;
+
+import org.tnsif.acc.c2tc.oopsDemo.Variablesdemo;
 
 public class Variablesdemo {
 	int a = 10;
@@ -18,3 +20,5 @@ public class Variablesdemo {
 	}
 
 }
+
+
