@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body { background-color: #f8f9fa; }
+        .card { margin-bottom: 20px; }
+        .table-responsive { max-height: 400px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Placement Management System</a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <ul class="nav nav-tabs" id="entityTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="colleges-tab" data-bs-toggle="tab" data-bs-target="#colleges" type="button" role="tab">Colleges</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="students-tab" data-bs-toggle="tab" data-bs-target="#students" type="button" role="tab">Students</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="certificates-tab" data-bs-toggle="tab" data-bs-target="#certificates" type="button" role="tab">Certificates</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="placements-tab" data-bs-toggle="tab" data-bs-target="#placements" type="button" role="tab">Placements</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="admins-tab" data-bs-toggle="tab" data-bs-target="#admins" type="button" role="tab">Admins</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="users-tab" data-bs-toggle="tab" data-bs-target="#users" type="button" role="tab">Users</button>
+            </li>
+        </ul>
+
+        <div class="tab-content mt-4" id="entityTabsContent">
+            <!-- Colleges Tab -->
+            <div class="tab-pane fade show active" id="colleges" role="tabpanel">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Colleges</h5>
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#collegeModal">Add College</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="collegesTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Address</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Students Tab -->
+            <div class="tab-pane fade" id="students" role="tabpanel">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Students</h5>
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#studentModal">Add Student</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="studentsTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>College</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificates Tab -->
+            <div class="tab-pane fade" id="certificates" role="tabpanel">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Certificates</h5>
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#certificateModal">Add Certificate</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="certificatesTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Issuer</th>
+                                        <th>Student</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Placements Tab -->
+            <div class="tab-pane fade" id="placements" role="tabpanel">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Placements</h5>
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#placementModal">Add Placement</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="placementsTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Company</th>
+                                        <th>Position</th>
+                                        <th>Salary</th>
+                                        <th>Student</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admins Tab -->
+            <div class="tab-pane fade" id="admins" role="tabpanel">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Admins</h5>
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#adminModal">Add Admin</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="adminsTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Tab -->
+            <div class="tab-pane fade" id="users" role="tabpanel">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Users</h5>
+                        <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#userModal">Add User</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="usersTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Username</th>
+                                        <th>Password</th>
+                                        <th>Role</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals for Forms -->
+    <!-- College Modal -->
+    <div class="modal fade" id="collegeModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add/Edit College</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="collegeForm">
+                        <input type="hidden" id="collegeId">
+                        <div class="mb-3">
+                            <label for="collegeName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="collegeName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="collegeAddress" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="collegeAddress" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Modal -->
+    <div class="modal fade" id="studentModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add/Edit Student</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="studentForm">
+                        <input type="hidden" id="studentId">
+                        <div class="mb-3">
+                            <label for="studentName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="studentName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="studentEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="studentEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="studentCollegeId" class="form-label">College</label>
+                            <select class="form-control" id="studentCollegeId" required></select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificate Modal -->
+    <div class="modal fade" id="certificateModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add/Edit Certificate</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="certificateForm">
+                        <input type="hidden" id="certificateId">
+                        <div class="mb-3">
+                            <label for="certificateName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="certificateName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="certificateIssuer" class="form-label">Issuer</label>
+                            <input type="text" class="form-control" id="certificateIssuer" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="certificateStudentId" class="form-label">Student</label>
+                            <select class="form-control" id="certificateStudentId" required></select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Placement Modal -->
+    <div class="modal fade" id="placementModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add/Edit Placement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="placementForm">
+                        <input type="hidden" id="placementId">
+                        <div class="mb-3">
+                            <label for="placementCompany" class="form-label">Company</label>
+                            <input type="text" class="form-control" id="placementCompany" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="placementPosition" class="form-label">Position</label>
+                            <input type="text" class="form-control" id="placementPosition" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="placementSalary" class="form-label">Salary</label>
+                            <input type="number" class="form-control" id="placementSalary" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="placementStudentId" class="form-label">Student</label>
+                            <select class="form-control" id="placementStudentId" required></select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Modal -->
+    <div class="modal fade" id="adminModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add/Edit Admin</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="adminForm">
+                        <input type="hidden" id="adminId">
+                        <div class="mb-3">
+                            <label for="adminName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="adminName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="adminEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="adminEmail" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Modal -->
+    <div class="modal fade" id="userModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add/Edit User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="userForm">
+                        <input type="hidden" id="userId">
+                        <div class="mb-3">
+                            <label for="userUsername" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="userUsername" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="userPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="userPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="userRole" class="form-label">Role</label>
+                            <select class="form-control" id="userRole" required>
+                                <option value="ADMIN">Admin</option>
+                                <option value="STUDENT">Student</option>
+                                <option value="USER">User</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const baseUrl = 'http://localhost:8081/api';
+
+        let colleges = [];
+        let students = [];
+        let certificates = [];
+        let placements = [];
+        let admins = [];
+        let users = [];
+
+        // Load Colleges
+        async function loadColleges() {
+            const response = await fetch(`${baseUrl}/colleges`);
+            colleges = await response.json();
+            const tbody = document.querySelector('#collegesTable tbody');
+            tbody.innerHTML = '';
+            colleges.forEach(college => {
+                const row = `<tr>
+                    <td>${college.id}</td>
+                    <td>${college.name}</td>
+                    <td>${college.address}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editCollege(${college.id})">Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteCollege(${college.id})">Delete</button>
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+            populateCollegeSelects();
+        }
+
+        // Load Students
+        async function loadStudents() {
+            const response = await fetch(`${baseUrl}/students`);
+            students = await response.json();
+            const tbody = document.querySelector('#studentsTable tbody');
+            tbody.innerHTML = '';
+            students.forEach(student => {
+                const row = `<tr>
+                    <td>${student.id}</td>
+                    <td>${student.name}</td>
+                    <td>${student.email}</td>
+                    <td>${student.college ? student.college.name : 'N/A'}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editStudent(${student.id})">Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteStudent(${student.id})">Delete</button>
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+            populateStudentSelects();
+        }
+
+        // Load Certificates
+        async function loadCertificates() {
+            const response = await fetch(`${baseUrl}/certificates`);
+            certificates = await response.json();
+            const tbody = document.querySelector('#certificatesTable tbody');
+            tbody.innerHTML = '';
+            certificates.forEach(certificate => {
+                const row = `<tr>
+                    <td>${certificate.id}</td>
+                    <td>${certificate.name}</td>
+                    <td>${certificate.issuer}</td>
+                    <td>${certificate.student ? certificate.student.name : 'N/A'}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editCertificate(${certificate.id})">Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteCertificate(${certificate.id})">Delete</button>
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // Load Placements
+        async function loadPlacements() {
+            const response = await fetch(`${baseUrl}/placements`);
+            placements = await response.json();
+            const tbody = document.querySelector('#placementsTable tbody');
+            tbody.innerHTML = '';
+            placements.forEach(placement => {
+                const row = `<tr>
+                    <td>${placement.id}</td>
+                    <td>${placement.company}</td>
+                    <td>${placement.position}</td>
+                    <td>${placement.salary}</td>
+                    <td>${placement.student ? placement.student.name : 'N/A'}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editPlacement(${placement.id})">Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deletePlacement(${placement.id})">Delete</button>
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // Load Admins
+        async function loadAdmins() {
+            const response = await fetch(`${baseUrl}/admins`);
+            admins = await response.json();
+            const tbody = document.querySelector('#adminsTable tbody');
+            tbody.innerHTML = '';
+            admins.forEach(admin => {
+                const row = `<tr>
+                    <td>${admin.id}</td>
+                    <td>${admin.name}</td>
+                    <td>${admin.email}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editAdmin(${admin.id})">Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteAdmin(${admin.id})">Delete</button>
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // Load Users
+        async function loadUsers() {
+            const response = await fetch(`${baseUrl}/users`);
+            users = await response.json();
+            const tbody = document.querySelector('#usersTable tbody');
+            tbody.innerHTML = '';
+            users.forEach(user => {
+                const row = `<tr>
+                    <td>${user.id}</td>
+                    <td>${user.username}</td>
+                    <td>${user.password}</td>
+                    <td>${user.role}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" onclick="editUser(${user.id})">Edit</button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteUser(${user.id})">Delete</button>
+                    </td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // Populate selects
+        function populateCollegeSelects() {
+            const selects = document.querySelectorAll('#studentCollegeId');
+            selects.forEach(select => {
+                select.innerHTML = '<option value="">Select College</option>';
+                colleges.forEach(college => {
+                    select.innerHTML += `<option value="${college.id}">${college.name}</option>`;
+                });
+            });
+        }
+
+        function populateStudentSelects() {
+            const selects = document.querySelectorAll('#certificateStudentId, #placementStudentId');
+            selects.forEach(select => {
+                select.innerHTML = '<option value="">Select Student</option>';
+                students.forEach(student => {
+                    select.innerHTML += `<option value="${student.id}">${student.name}</option>`;
+                });
+            });
+        }
+
+        // CRUD for College
+        document.getElementById('collegeForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('collegeId').value;
+            const name = document.getElementById('collegeName').value;
+            const address = document.getElementById('collegeAddress').value;
+            const method = id ? 'PUT' : 'POST';
+            const url = id ? `${baseUrl}/colleges/${id}` : `${baseUrl}/colleges`;
+            await fetch(url, {
+                method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, address })
+            });
+            bootstrap.Modal.getInstance(document.getElementById('collegeModal')).hide();
+            loadColleges();
+            document.getElementById('collegeForm').reset();
+            document.getElementById('collegeId').value = '';
+        });
+
+        function editCollege(id) {
+            const college = colleges.find(c => c.id == id);
+            document.getElementById('collegeId').value = college.id;
+            document.getElementById('collegeName').value = college.name;
+            document.getElementById('collegeAddress').value = college.address;
+            new bootstrap.Modal(document.getElementById('collegeModal')).show();
+        }
+
+        async function deleteCollege(id) {
+            await fetch(`${baseUrl}/colleges/${id}`, { method: 'DELETE' });
+            loadColleges();
+        }
+
+        // CRUD for Student
+        document.getElementById('studentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('studentId').value;
+            const name = document.getElementById('studentName').value;
+            const email = document.getElementById('studentEmail').value;
+            const collegeId = document.getElementById('studentCollegeId').value;
+            const method = id ? 'PUT' : 'POST';
+            const url = id ? `${baseUrl}/students/${id}` : `${baseUrl}/students`;
+            await fetch(url, {
+                method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, college: { id: collegeId } })
+            });
+            bootstrap.Modal.getInstance(document.getElementById('studentModal')).hide();
+            loadStudents();
+            document.getElementById('studentForm').reset();
+            document.getElementById('studentId').value = '';
+        });
+
+        function editStudent(id) {
+            const student = students.find(s => s.id == id);
+            document.getElementById('studentId').value = student.id;
+            document.getElementById('studentName').value = student.name;
+            document.getElementById('studentEmail').value = student.email;
+            document.getElementById('studentCollegeId').value = student.college ? student.college.id : '';
+            new bootstrap.Modal(document.getElementById('studentModal')).show();
+        }
+
+        async function deleteStudent(id) {
+            await fetch(`${baseUrl}/students/${id}`, { method: 'DELETE' });
+            loadStudents();
+        }
+
+        // CRUD for Certificate
+        document.getElementById('certificateForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('certificateId').value;
+            const name = document.getElementById('certificateName').value;
+            const issuer = document.getElementById('certificateIssuer').value;
+            const studentId = document.getElementById('certificateStudentId').value;
+            const method = id ? 'PUT' : 'POST';
+            const url = id ? `${baseUrl}/certificates/${id}` : `${baseUrl}/certificates`;
+            await fetch(url, {
+                method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, issuer, student: { id: studentId } })
+            });
+            bootstrap.Modal.getInstance(document.getElementById('certificateModal')).hide();
+            loadCertificates();
+            document.getElementById('certificateForm').reset();
+            document.getElementById('certificateId').value = '';
+        });
+
+        function editCertificate(id) {
+            const certificate = certificates.find(c => c.id == id);
+            document.getElementById('certificateId').value = certificate.id;
+            document.getElementById('certificateName').value = certificate.name;
+            document.getElementById('certificateIssuer').value = certificate.issuer;
+            document.getElementById('certificateStudentId').value = certificate.student ? certificate.student.id : '';
+            new bootstrap.Modal(document.getElementById('certificateModal')).show();
+        }
+
+        async function deleteCertificate(id) {
+            await fetch(`${baseUrl}/certificates/${id}`, { method: 'DELETE' });
+            loadCertificates();
+        }
+
+        // CRUD for Placement
+        document.getElementById('placementForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('placementId').value;
+            const company = document.getElementById('placementCompany').value;
+            const position = document.getElementById('placementPosition').value;
+            const salary = document.getElementById('placementSalary').value;
+            const studentId = document.getElementById('placementStudentId').value;
+            const method = id ? 'PUT' : 'POST';
+            const url = id ? `${baseUrl}/placements/${id}` : `${baseUrl}/placements`;
+            await fetch(url, {
+                method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ company, position, salary: parseFloat(salary), student: { id: studentId } })
+            });
+            bootstrap.Modal.getInstance(document.getElementById('placementModal')).hide();
+            loadPlacements();
+            document.getElementById('placementForm').reset();
+            document.getElementById('placementId').value = '';
+        });
+
+        function editPlacement(id) {
+            const placement = placements.find(p => p.id == id);
+            document.getElementById('placementId').value = placement.id;
+            document.getElementById('placementCompany').value = placement.company;
+            document.getElementById('placementPosition').value = placement.position;
+            document.getElementById('placementSalary').value = placement.salary;
+            document.getElementById('placementStudentId').value = placement.student ? placement.student.id : '';
+            new bootstrap.Modal(document.getElementById('placementModal')).show();
+        }
+
+        async function deletePlacement(id) {
+            await fetch(`${baseUrl}/placements/${id}`, { method: 'DELETE' });
+            loadPlacements();
+        }
+
+        // CRUD for Admin
+        document.getElementById('adminForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('adminId').value;
+            const name = document.getElementById('adminName').value;
+            const email = document.getElementById('adminEmail').value;
+            const method = id ? 'PUT' : 'POST';
+            const url = id ? `${baseUrl}/admins/${id}` : `${baseUrl}/admins`;
+            await fetch(url, {
+                method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email })
+            });
+            bootstrap.Modal.getInstance(document.getElementById('adminModal')).hide();
+            loadAdmins();
+            document.getElementById('adminForm').reset();
+            document.getElementById('adminId').value = '';
+        });
+
+        function editAdmin(id) {
+            const admin = admins.find(a => a.id == id);
+            document.getElementById('adminId').value = admin.id;
+            document.getElementById('adminName').value = admin.name;
+            document.getElementById('adminEmail').value = admin.email;
+            new bootstrap.Modal(document.getElementById('adminModal')).show();
+        }
+
+        async function deleteAdmin(id) {
+            await fetch(`${baseUrl}/admins/${id}`, { method: 'DELETE' });
+            loadAdmins();
+        }
+
+        // CRUD for User
+        document.getElementById('userForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('userId').value;
+            const username = document.getElementById('userUsername').value;
+            const password = document.getElementById('userPassword').value;
+            const role = document.getElementById('userRole').value;
+            const method = id ? 'PUT' : 'POST';
+            const url = id ? `${baseUrl}/users/${id}` : `${baseUrl}/users`;
+            await fetch(url, {
+                method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password, role })
+            });
+            bootstrap.Modal.getInstance(document.getElementById('userModal')).hide();
+            loadUsers();
+            document.getElementById('userForm').reset();
+            document.getElementById('userId').value = '';
+        });
+
+        function editUser(id) {
+            const user = users.find(u => u.id == id);
+            document.getElementById('userId').value = user.id;
+            document.getElementById('userUsername').value = user.username;
+            document.getElementById('userPassword').value = user.password;
+            document.getElementById('userRole').value = user.role;
+            new bootstrap.Modal(document.getElementById('userModal')).show();
+        }
+
+        async function deleteUser(id) {
+            await fetch(`${baseUrl}/users/${id}`, { method: 'DELETE' });
+            loadUsers();
+        }
+
+        // Load all on page load
+        window.onload = () => {
+            loadColleges();
+            loadStudents();
+            loadCertificates();
+            loadPlacements();
+            loadAdmins();
+            loadUsers();
+        };
+    </script>
+</body>
+</html>
